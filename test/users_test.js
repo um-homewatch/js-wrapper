@@ -1,12 +1,12 @@
 const expect = require("chai").expect;
-const faker = require("faker");
+const factories = require("./support/factories");
 const nock = require("nock");
 const Homewatch = require("../src/api");
 const homewatch = new Homewatch("http://localhost:3000");
 
 describe("users endpoint", function() {
   it("should register a user", async () => {
-    user = generateUser();
+    let user = factories.build("user");
     nock("http://localhost:3000")
       .post("/users", { user })
       .reply(200, {
@@ -22,7 +22,7 @@ describe("users endpoint", function() {
   });
 
   it("should login a user", async () => {
-    user = generateUser();
+    let user = factories.build("user");
     nock("http://localhost:3000")
       .post("/auth", { auth: { email: user.email, password: user.password } })
       .reply(200, { jwt: "token" });
@@ -33,7 +33,7 @@ describe("users endpoint", function() {
   });
 
   it("should update a user", async () => {
-    user = generateUser();
+    let user = factories.build("user");
     homewatch.auth = "token";
 
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
@@ -48,7 +48,7 @@ describe("users endpoint", function() {
 
   it("should return the user data", async () => {
     homewatch.auth = "token";
-    let user = generateUser();
+    let user = factories.build("user");
 
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
       .get("/users/me")
@@ -60,12 +60,3 @@ describe("users endpoint", function() {
     expect(response.data.email).to.eq(user.email);
   });
 });
-
-function generateUser() {
-  name = faker.name.findName();
-  return {
-    name: name,
-    email: faker.internet.email(name),
-    password: "foobar",
-  };
-}

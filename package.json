@@ -15,6 +15,7 @@
     "eslint-config-google": "^0.7.1",
     "faker": "^4.1.0",
     "mocha": "^3.3.0",
-    "nock": "^9.0.13"
+    "nock": "^9.0.13",
+    "rosie": "^1.6.0"
   }
 }
