@@ -1,0 +1,24 @@
+language: node_js
+sudo: false
+
+node_js:
+  - "7"
+
+branches:
+  only:
+  - master
+
+cache:
+  yarn: true
+
+script:
+  - npm run lint
+  - npm test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
