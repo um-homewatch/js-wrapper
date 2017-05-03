@@ -35,9 +35,18 @@ async function main() {
     console.log(newHome.data);
 
     // add things to home
-    let thing = await homewatch.things(newHome.data).createThing({ type: "Things::Light", subtype: "hue", connection_info: { address: "localhost", port: "8000" } });
+    let thing = await homewatch.things(newHome.data).createThing({ type: "Things::Light", subtype: "hue", connection_info: { address: "localhost", port: "8000", light_id: 1 } });
     console.log("Thing");
     console.log(thing.data);
+
+    // get thing status
+    let status = await homewatch.status(thing.data).getStatus();
+    console.log("Thing status");
+    console.log(status.data);
+
+    // invert thing status
+    status.data.on = !status.data.on;
+    status = await homewatch.status(thing.data).putStatus(status.data);
 
     // reload home
     newHome = await homewatch.homes.getHome(newHome.data.id);
@@ -45,9 +54,9 @@ async function main() {
     console.log(newHome.data);
 
     // delete home
-    // let deletedHome = await homewatch.homes.deleteHome(home.data.id);
-    // console.log("Deleted home, status code:");
-    // console.log(deletedHome.status);
+    let deletedHome = await homewatch.homes.deleteHome(home.data.id);
+    console.log("Deleted home, status code:");
+    console.log(deletedHome.status);
   } catch (err) {
     console.error(err);
     console.error(`CODE:${err.response.status} DATA:${JSON.stringify(err.response.data)}`);

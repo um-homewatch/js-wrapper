@@ -4,7 +4,7 @@ const nock = require("nock");
 const Homewatch = require("../src/api");
 const homewatch = new Homewatch("http://localhost:3000");
 
-describe("homes endpoint", () => {
+describe("things endpoint", () => {
   const home = { id: 1 };
   homewatch.auth = "token";
 

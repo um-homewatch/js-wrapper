@@ -16,4 +16,7 @@ Factory.define("thing")
   .attr("subtype", faker.lorem.word())
   .attr("connection_info", { address: faker.internet.ip() });
 
+Factory.define("light_status")
+  .attr("on", faker.random.boolean());
+
 module.exports = Factory;
