@@ -11,4 +11,9 @@ Factory.define("home")
   .attr("tunnel", faker.internet.url())
   .attr("location", faker.address.streetAddress());
 
+Factory.define("thing")
+  .attr("type", faker.lorem.word())
+  .attr("subtype", faker.lorem.word())
+  .attr("connection_info", { address: faker.internet.ip() });
+
 module.exports = Factory;

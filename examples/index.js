@@ -1,5 +1,4 @@
-const Homewatch = require("./api.js");
-
+const Homewatch = require("../src/api");
 const homewatch = new Homewatch("http://localhost:3000");
 
 async function main() {
@@ -17,6 +16,7 @@ async function main() {
 
     // current user
     let currentUser = await homewatch.users.currentUser();
+    console.log("Current user:");
     console.log(currentUser.data);
 
     // list user's homes
@@ -27,17 +27,29 @@ async function main() {
     await Promise.all(deleteTasks);
 
     let home = await homewatch.homes.createHome({ name: "name", tunnel: "tunnel", location: "meme" });
-    console.log(home.data);
 
     // update home
-    await homewatch.homes.updateHome(home.data.id, { name: "name1", tunnel: "tunnel1", location: "meme1" });
+    await homewatch.homes.updateHome(home.data.id, { name: "name1", tunnel: "http://localhost:4567", location: "meme1" });
     let newHome = await homewatch.homes.getHome(home.data.id);
+    console.log("Updated Home");
+    console.log(newHome.data);
+
+    // add things to home
+    let thing = await homewatch.things(newHome.data).createThing({ type: "Things::Light", subtype: "hue", connection_info: { address: "localhost", port: "8000" } });
+    console.log("Thing");
+    console.log(thing.data);
+
+    // reload home
+    newHome = await homewatch.homes.getHome(newHome.data.id);
+    console.log("Reload home");
     console.log(newHome.data);
 
     // delete home
-    let deletedHome = await homewatch.homes.deleteHome(home.data.id);
-    console.log(deletedHome);
+    // let deletedHome = await homewatch.homes.deleteHome(home.data.id);
+    // console.log("Deleted home, status code:");
+    // console.log(deletedHome.status);
   } catch (err) {
+    console.error(err);
     console.error(`CODE:${err.response.status} DATA:${JSON.stringify(err.response.data)}`);
   }
 }
