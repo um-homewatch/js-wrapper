@@ -6,6 +6,7 @@ async function main() {
   try {
     await homewatch.users.register("jose", "josesousa9000@gmail.com", "123456");
   } catch (err) {
+    console.error(err);
     console.error(`CODE:${err.response.status} DATA:${JSON.stringify(err.response.data)}`);
   }
 
@@ -29,13 +30,18 @@ async function main() {
     let home = await homewatch.homes.createHome({ name: "name", tunnel: "tunnel", location: "meme" });
 
     // update home
-    await homewatch.homes.updateHome(home.data.id, { name: "name1", tunnel: "http://localhost:4567", location: "meme1" });
+    await homewatch.homes.updateHome(home.data.id, { name: "name1", tunnel: "http://192.168.1.200:4567", location: "meme1" });
     let newHome = await homewatch.homes.getHome(home.data.id);
     console.log("Updated Home");
     console.log(newHome.data);
 
+    // discover hue devices
+    let hueDevices = await homewatch.things(newHome.data).discoverThings({ type: "Things::Light", subtype: "hue", port: 8000 });
+    console.log("Discover devices:");
+    console.log(hueDevices.data);
+
     // add things to home
-    let thing = await homewatch.things(newHome.data).createThing({ type: "Things::Light", subtype: "hue", connection_info: { address: "localhost", port: "8000", light_id: 1 } });
+    let thing = await homewatch.things(newHome.data).createThing({ type: "Things::Light", subtype: "hue", connection_info: { address: "192.168.1.9", port: "8000", light_id: 1 } });
     console.log("Thing");
     console.log(thing.data);
 

@@ -1,11 +1,11 @@
 const axios = require("axios");
+const querystring = require("querystring");
 
 class Things {
   constructor(baseApi, home) {
     this.baseApi = baseApi;
     this.axios = axios.create({
       baseURL: baseApi.url,
-      timeout: 500,
       headers: { "Authorization": `Bearer ${baseApi.auth}` },
     });
     this.home = home;
@@ -17,6 +17,18 @@ class Things {
    */
   listThings() {
     return this.axios.get(`/homes/${this.home.id}/things`);
+  }
+
+  /**
+   * Discover devices in the user's network
+   * @param {Object} discoveryParams
+   * @param {string} discoveryParams.type
+   * @param {string} discoveryParams.subtype
+   * @param {number} discoveryParams.port
+   * @return {Promise}
+   */
+  discoverThings(discoveryParams) {
+    return this.axios.get(`/homes/${this.home.id}/things/discovery`, { params: discoveryParams });
   }
 
   /**

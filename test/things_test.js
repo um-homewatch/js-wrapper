@@ -20,6 +20,20 @@ describe("things endpoint", () => {
     expect(response.data).to.deep.eq(things);
   });
 
+  it("should request a discovery of things in a home", async () => {
+    let discoveryParams = { type: "Things::Light", subtype: "hue", port: "8000" };
+    let things = factories.buildList("thing", 3);
+
+    nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
+      .get("/homes/1/things/discovery")
+      .query(discoveryParams)
+      .reply(200, things);
+
+    let response = await homewatch.things(home).discoverThings(discoveryParams);
+
+    expect(response.data).to.deep.eq(things);
+  });
+
   it("should get a thing", async () => {
     let thing = factories.build("thing");
 
