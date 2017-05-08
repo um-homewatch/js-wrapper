@@ -19,4 +19,7 @@ Factory.define("thing")
 Factory.define("light_status")
   .attr("on", faker.random.boolean());
 
+Factory.define("scenario")
+  .attr("name", faker.lorem.word());
+
 module.exports = Factory;
