@@ -1,0 +1,59 @@
+const axios = require("axios");
+
+class ScenarioThings {
+  constructor(baseApi, scenario) {
+    this.baseApi = baseApi;
+    this.axios = axios.create({
+      baseURL: baseApi.url,
+      timeout: 500,
+      headers: { "Authorization": `Bearer ${baseApi.auth}` },
+    });
+    this.scenario = scenario;
+  }
+
+  /**
+  * Returns the scenario's things
+  * @return {Promise}
+  */
+  listScenarioThings() {
+    return this.axios.get(`/scenarios/${this.scenario.id}/things`);
+  }
+
+  /**
+   *  Gets a thing from a home
+   *  @param {number} id
+   *  @return {Promise}
+   */
+  getScenarioThing(id) {
+    return this.axios.get(`/scenarios/${this.scenario.id}/things/${id}`);
+  }
+
+  /**
+    * Adds thing to scenario
+    * @param {Object} thing
+    * @param {string} thing.thing_id
+    * @param {Object} thing.status
+    * @return {Promise}
+    */
+  createScenarioThing(thing) {
+    return this.axios.post(`/scenarios/${this.scenario.id}/things`, { scenario_thing: thing });
+  }
+
+  /**
+    * Updates a scenario thing
+    * @param {number} id
+    * @param {Object} thing
+    * @param {string} thing.thing_id
+    * @param {Object} thing.statusfo
+    * @return {Promise}
+    */
+  updateScenarioThing(id, thing) {
+    return this.axios.put(`/scenarios/${this.scenario.id}/things/${id}`, { scenario_thing: thing });
+  }
+
+  deleteScenarioThing(id) {
+    return this.axios.delete(`/scenarios/${this.scenario.id}/things/${id}`);
+  }
+}
+
+module.exports = ScenarioThings;

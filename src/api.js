@@ -3,6 +3,7 @@ const Homes = require("./homes");
 const Things = require("./things");
 const ThingStatus = require("./things/status");
 const Scenarios = require("./scenarios");
+const ScenarioThings = require("./scenario_things");
 
 class Homewatch {
   constructor(url, auth) {
@@ -46,6 +47,15 @@ class Homewatch {
     */
   scenarios(home) {
     return new Scenarios(this, home);
+  }
+
+  /**
+    * Access the scenario things module
+    * @param {Object} scenario
+    * @return {ScenarioThings}
+    */
+  scenarioThings(scenario) {
+    return new ScenarioThings(this, scenario);
   }
 }
 
