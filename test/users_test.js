@@ -7,6 +7,7 @@ const homewatch = new Homewatch("http://localhost:3000");
 describe("users endpoint", function() {
   it("should register a user", async () => {
     let user = factories.build("user");
+
     nock("http://localhost:3000")
       .post("/users", { user })
       .reply(200, {
@@ -15,7 +16,7 @@ describe("users endpoint", function() {
         jwt: "token",
       });
 
-    let response = await homewatch.users.register(user.name, user.email, user.password);
+    let response = await homewatch.users.register(user);
     expect(response.data.name).to.eq(user.name);
     expect(response.data.email).to.eq(user.email);
     expect(response.data.jwt).to.eq("token");
@@ -23,11 +24,12 @@ describe("users endpoint", function() {
 
   it("should login a user", async () => {
     let user = factories.build("user");
+
     nock("http://localhost:3000")
       .post("/auth", { auth: { email: user.email, password: user.password } })
       .reply(200, { jwt: "token" });
 
-    let response = await homewatch.users.login(user.email, user.password);
+    let response = await homewatch.users.login(user);
 
     expect(response.data.jwt).to.exist;
   });
@@ -40,7 +42,7 @@ describe("users endpoint", function() {
       .put("/users/me", { user })
       .reply(200, user);
 
-    let response = await homewatch.users.updateCurrentUser(user.name, user.email, user.password);
+    let response = await homewatch.users.updateCurrentUser(user);
 
     expect(response.data.name).to.eq(user.name);
     expect(response.data.email).to.eq(user.email);

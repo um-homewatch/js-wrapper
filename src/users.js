@@ -10,43 +10,47 @@ class Users {
     });
   }
 
-  register(name, email, password) {
-    let data = {
-      user: {
-        name,
-        email,
-        password,
-      },
-    };
-
-    return this.axios.post("/users", data);
+  /**
+    * Registers a user
+    * @param {Object} user
+    * @param {string} user.name
+    * @param {string} user.email
+    * @param {string} user.password
+    * @return {Promise}
+    */
+  register(user) {
+    return this.axios.post("/users", { user });
   };
 
-  login(email, password) {
-    let data = {
-      auth: {
-        email,
-        password,
-      },
-    };
-
-    return this.axios.post("/auth", data);
+  /**
+    * Authenticates a user
+    * @param {Object} auth
+    * @param {string} auth.email
+    * @param {string} auth.password
+    * @return {Promise}
+    */
+  login(auth) {
+    return this.axios.post("/auth", { auth });
   }
 
+  /**
+    * Returns the currently logged user
+    * @return {Promise}
+    */
   currentUser() {
     return this.axios.get("/users/me");
   }
 
-  updateCurrentUser(name, email, password) {
-    let data = {
-      user: {
-        name,
-        email,
-        password,
-      },
-    };
-
-    return this.axios.put("/users/me", data);
+  /**
+    * Updates the currently logged user
+    * @param {Object} user
+    * @param {string} user.name
+    * @param {string} user.email
+    * @param {string} user.password
+    * @return {Promise}
+    */
+  updateCurrentUser(user) {
+    return this.axios.put("/users/me", { user });
   }
 }
 

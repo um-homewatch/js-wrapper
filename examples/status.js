@@ -1,10 +1,17 @@
+// this script represents a full integration with a philips hue type bulb, and interacts with it
+
 const Homewatch = require("../src/api");
 const homewatch = new Homewatch("http://localhost:3000");
+const jose = {
+  name: "jose",
+  email: "josesousa9000@gmail.com",
+  password: "123456",
+};
 
 async function main() {
   // try and register the user, if it doesnt exist
   try {
-    await homewatch.users.register("jose", "josesousa9000@gmail.com", "123456");
+    await homewatch.users.register(jose);
   } catch (err) {
     console.error(err);
     console.error(`CODE:${err.response.status} DATA:${JSON.stringify(err.response.data)}`);
@@ -12,7 +19,7 @@ async function main() {
 
   try {
     // login
-    let user = await homewatch.users.login("josesousa9000@gmail.com", "123456");
+    let user = await homewatch.users.login(jose);
     homewatch.auth = user.data.jwt;
 
     // current user
