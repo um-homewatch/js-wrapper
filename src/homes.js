@@ -19,9 +19,9 @@ class Homes {
   }
 
   /**
-   *  Gets a home
-   *  @param {number} id
-   *  @return {Promise}
+   * Gets a home
+   * @param {number} id
+   * @return {Promise}
    */
   getHome(id) {
     return this.axios.get(`/homes/${id}`);
@@ -52,6 +52,11 @@ class Homes {
     return this.axios.put(`/homes/${id}`, { home });
   }
 
+  /**
+   *  Deletes a home
+   *  @param {number} id
+   *  @return {Promise}
+   */
   deleteHome(id) {
     return this.axios.delete(`/homes/${id}`);
   }

@@ -20,16 +20,16 @@ class Scenarios {
   }
 
   /**
-   *  Gets a scecnario
-   *  @param {number} id
-   *  @return {Promise}
+   * Gets a scecnario
+   * @param {number} id
+   * @return {Promise}
    */
   getScenario(id) {
     return this.axios.get(`/homes/${this.home.id}/scenarios/${id}`);
   }
 
   /**
-    * Creates a home
+    * Creates a scenario
     * @param {Object} scenario
     * @param {string} scenario.name
     * @return {Promise}
@@ -39,7 +39,7 @@ class Scenarios {
   }
 
   /**
-    * Creates a home
+    * Updates a scenario
     * @param {number} id
     * @param {Object} scenario
     * @param {string} scenario.name
@@ -49,6 +49,11 @@ class Scenarios {
     return this.axios.put(`/homes/${this.home.id}/scenarios/${id}`, { scenario });
   }
 
+  /**
+   * Deletes a scenario
+   * @param {number} id
+   * @return {Promise}
+   */
   deleteScenario(id) {
     return this.axios.delete(`/homes/${this.home.id}/scenarios/${id}`);
   }

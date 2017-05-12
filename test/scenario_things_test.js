@@ -8,7 +8,7 @@ describe("scenario things endpoint", () => {
   const scenario = { id: 1 };
   homewatch.auth = "token";
 
-  it("should list the home's things", async () => {
+  it("should list the scenario's things", async () => {
     let scenarioThings = factories.buildList("scenario_thing", 3);
 
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
@@ -20,7 +20,7 @@ describe("scenario things endpoint", () => {
     expect(response.data).to.deep.eq(scenarioThings);
   });
 
-  it("should get a thing", async () => {
+  it("should get a scenario thing", async () => {
     let scenarioThing = factories.build("scenario_thing");
 
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
@@ -33,7 +33,7 @@ describe("scenario things endpoint", () => {
     expect(response.data.status).to.deep.eq(scenarioThing.status);
   });
 
-  it("should create a thing", async () => {
+  it("should create a scenario thing", async () => {
     let scenarioThing = factories.build("scenario_thing");
 
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
@@ -46,7 +46,7 @@ describe("scenario things endpoint", () => {
     expect(response.data.status).to.deep.eq(scenarioThing.status);
   });
 
-  it("should update a thing", async () => {
+  it("should update a scenario thing", async () => {
     let scenarioThing = factories.build("scenario_thing");
 
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
@@ -60,7 +60,7 @@ describe("scenario things endpoint", () => {
   });
 
 
-  it("should delete a thing", async () => {
+  it("should delete a scenario thing", async () => {
     homewatch.auth = "token";
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
       .delete("/scenarios/1/things/2")

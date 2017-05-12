@@ -11,6 +11,9 @@ class Homewatch {
     this.auth = auth;
   }
 
+  /**
+   * @return {Users}
+   */
   get users() {
     return new Users(this);
   }
