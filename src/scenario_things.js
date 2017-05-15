@@ -5,7 +5,6 @@ class ScenarioThings {
     this.baseApi = baseApi;
     this.axios = axios.create({
       baseURL: baseApi.url,
-      timeout: 500,
       headers: { "Authorization": `Bearer ${baseApi.auth}` },
     });
     this.scenario = scenario;
