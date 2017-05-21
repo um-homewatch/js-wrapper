@@ -1,12 +1,6 @@
-const axios = require("axios");
-
 class ScenarioThings {
-  constructor(baseApi, scenario) {
-    this.baseApi = baseApi;
-    this.axios = axios.create({
-      baseURL: baseApi.url,
-      headers: { "Authorization": `Bearer ${baseApi.auth}` },
-    });
+  constructor(axios, scenario) {
+    this.axios = axios;
     this.scenario = scenario;
   }
 

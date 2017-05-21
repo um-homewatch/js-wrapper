@@ -1,28 +1,33 @@
+const axios = require("axios");
 const Users = require("./users");
 const Homes = require("./homes");
 const Things = require("./things");
-const ThingStatus = require("./things/status");
+const ThingStatus = require("./thing_status");
 const Scenarios = require("./scenarios");
 const ScenarioThings = require("./scenario_things");
 
 class Homewatch {
-  constructor(url, auth) {
-    this.url = url;
-    this.auth = auth;
+  constructor(url) {
+    axios.defaults.baseURL = url;
+    this.axios = axios.default;
+  }
+
+  set auth(auth) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${auth}`;
   }
 
   /**
    * @return {Users}
    */
   get users() {
-    return new Users(this);
+    return new Users(this.axios);
   }
 
   /**
    * @return {Homes}
    */
   get homes() {
-    return new Homes(this);
+    return new Homes(this.axios);
   }
 
   /**
@@ -31,7 +36,7 @@ class Homewatch {
     * @return {Things}
     */
   things(home) {
-    return new Things(this, home);
+    return new Things(this.axios, home);
   }
 
   /**
@@ -40,7 +45,7 @@ class Homewatch {
     * @return {Things}
     */
   status(thing) {
-    return new ThingStatus(this, thing);
+    return new ThingStatus(this.axios, thing);
   }
 
   /**
@@ -49,7 +54,7 @@ class Homewatch {
     * @return {Scenarios}
     */
   scenarios(home) {
-    return new Scenarios(this, home);
+    return new Scenarios(this.axios, home);
   }
 
   /**
@@ -58,7 +63,7 @@ class Homewatch {
     * @return {ScenarioThings}
     */
   scenarioThings(scenario) {
-    return new ScenarioThings(this, scenario);
+    return new ScenarioThings(this.axios, scenario);
   }
 }
 

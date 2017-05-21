@@ -1,12 +1,6 @@
-const axios = require("axios");
-
 class ThingStatus {
-  constructor(baseApi, thing) {
-    this.baseApi = baseApi;
-    this.axios = axios.create({
-      baseURL: baseApi.url,
-      headers: { "Authorization": `Bearer ${baseApi.auth}` },
-    });
+  constructor(axios, thing) {
+    this.axios = axios;
     this.thing = thing;
   }
 

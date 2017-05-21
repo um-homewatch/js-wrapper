@@ -12,7 +12,8 @@
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha"
   },
   "dependencies": {
-    "axios": "^0.16.1"
+    "axios": "^0.16.1",
+    "homewatch-js": "zeesousa/homewatch-js"
   },
   "devDependencies": {
     "chai": "^3.5.0",
