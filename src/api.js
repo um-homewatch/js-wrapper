@@ -5,11 +5,16 @@ const Things = require("./things");
 const ThingStatus = require("./thing_status");
 const Scenarios = require("./scenarios");
 const ScenarioThings = require("./scenario_things");
+const cache = require("memory-cache");
 
 class Homewatch {
-  constructor(url) {
+  constructor(url, cache) {
     axios.defaults.baseURL = url;
     this.axios = axios.default;
+    if (cache === true) {
+      this.axios.get = getFromCache(this.axios.get);
+      this.axios.interceptors.response.use(cacheClear);
+    }
   }
 
   set auth(auth) {
@@ -65,6 +70,25 @@ class Homewatch {
   scenarioThings(scenario) {
     return new ScenarioThings(this.axios, scenario);
   }
+}
+
+function getFromCache(get) {
+  return function cachedGet(url) {
+    const value = cache.get(url);
+
+    if (value) {
+      return value;
+    } else {
+      const request = get(...arguments);
+      cache.put(url, request, 30000);
+      return request;
+    }
+  };
+}
+
+function cacheClear(response) {
+  if (response.config.method != "get") cache.clear();
+  return response;
 }
 
 module.exports = Homewatch;

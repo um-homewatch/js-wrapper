@@ -576,6 +576,7 @@ homewatch-js@zeesousa/homewatch-js:
   resolved "https://codeload.github.com/zeesousa/homewatch-js/tar.gz/23be5aa2c05eb20bdc92414cb5dfc87cc43dc7d0"
   dependencies:
     axios "^0.16.1"
+    homewatch-js zeesousa/homewatch-js
 
 ignore@^3.2.0:
   version "3.3.3"
@@ -798,6 +799,10 @@ lodash@^4.0.0, lodash@^4.3.0, lodash@~4.17.2:
 longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
+
+memory-cache@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/memory-cache/-/memory-cache-0.1.6.tgz#2ed9933ed7a8c718249be7366f7ca8749acf8a24"
 
 "minimatch@2 || 3", minimatch@^3.0.2, minimatch@^3.0.4:
   version "3.0.4"

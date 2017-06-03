@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
-    "homewatch-js": "zeesousa/homewatch-js"
+    "homewatch-js": "zeesousa/homewatch-js",
+    "memory-cache": "^0.1.6"
   },
   "devDependencies": {
     "chai": "^3.5.0",

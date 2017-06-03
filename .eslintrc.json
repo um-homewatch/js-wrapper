@@ -16,6 +16,7 @@
             "error",
             "always"
         ],
-        "max-len": "off"
+        "max-len": "off",
+        "prefer-rest-params": "off"
     }
 }
