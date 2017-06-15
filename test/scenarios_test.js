@@ -65,4 +65,14 @@ describe("homes endpoint", () => {
 
     expect(response.status).to.eq(204);
   });
+
+  it("should delete a scenario", async () => {
+    nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
+      .delete("/scenarios/2/apply")
+      .reply(200);
+
+    let response = await homewatch.scenarios({ id: 1 }).applyScenario(2);
+
+    expect(response.status).to.eq(200);
+  });
 });
