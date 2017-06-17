@@ -38,7 +38,7 @@ describe("things endpoint", () => {
     let thing = factories.build("thing");
 
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
-      .get("/homes/1/things/2")
+      .get("/things/2")
       .reply(200, thing);
 
     let response = await homewatch.things(home).getThing(2);
@@ -66,7 +66,7 @@ describe("things endpoint", () => {
     let thing = factories.build("thing");
 
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
-      .put("/homes/1/things/2", { thing })
+      .put("/things/2", { thing })
       .reply(200, thing);
 
     let response = await homewatch.things(home).updateThing(2, thing);
@@ -80,7 +80,7 @@ describe("things endpoint", () => {
   it("should delete a thing", async () => {
     homewatch.auth = "token";
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
-      .delete("/homes/1/things/2")
+      .delete("/things/2")
       .reply(204);
 
     let response = await homewatch.things(home).deleteThing(2);

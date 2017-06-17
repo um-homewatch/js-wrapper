@@ -30,7 +30,7 @@ class Things {
    * @return {Promise}
    */
   getThing(id) {
-    return this.axios.get(`/homes/${this.home.id}/things/${id}`);
+    return this.axios.get(`/things/${id}`);
   }
 
   /**
@@ -55,7 +55,7 @@ class Things {
     * @return {Promise}
     */
   updateThing(id, thing) {
-    return this.axios.put(`/homes/${this.home.id}/things/${id}`, { thing });
+    return this.axios.put(`/things/${id}`, { thing });
   }
 
   /**
@@ -64,7 +64,7 @@ class Things {
     * @return {Promise}
     */
   deleteThing(id) {
-    return this.axios.delete(`/homes/${this.home.id}/things/${id}`);
+    return this.axios.delete(`/things/${id}`);
   }
 }
 

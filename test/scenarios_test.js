@@ -23,7 +23,7 @@ describe("homes endpoint", () => {
     let scenario = factories.build("scenario");
 
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
-      .get("/homes/1/scenarios/2")
+      .get("/scenarios/2")
       .reply(200, scenario);
 
     let response = await homewatch.scenarios({ id: 1 }).getScenario(2);
@@ -47,7 +47,7 @@ describe("homes endpoint", () => {
     let scenario = factories.build("scenario");
 
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
-      .put("/homes/1/scenarios/2", { scenario })
+      .put("/scenarios/2", { scenario })
       .reply(200, scenario);
 
     let response = await homewatch.scenarios({ id: 1 }).updateScenario(2, scenario);
@@ -58,7 +58,7 @@ describe("homes endpoint", () => {
 
   it("should delete a scenario", async () => {
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
-      .delete("/homes/1/scenarios/2")
+      .delete("/scenarios/2")
       .reply(204);
 
     let response = await homewatch.scenarios({ id: 1 }).deleteScenario(2);
