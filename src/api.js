@@ -5,6 +5,7 @@ const Things = require("./things");
 const ThingStatus = require("./thing_status");
 const Scenarios = require("./scenarios");
 const ScenarioThings = require("./scenario_things");
+const Hub = require("./hub");
 const cache = require("memory-cache");
 
 class Homewatch {
@@ -36,39 +37,51 @@ class Homewatch {
   }
 
   /**
-    * Access the things module
-    * @param {Object} home
-    * @return {Things}
-    */
+   * Access the things module
+   * @param {Object} home
+   * @return {Things}
+   */
   things(home) {
     return new Things(this.axios, home);
   }
 
   /**
-    * Access the thing status module
-    * @param {Object} thing
-    * @return {Things}
-    */
+   * Access the thing status module
+   * @param {Object} thing
+   * @return {Things}
+   */
   status(thing) {
     return new ThingStatus(this.axios, thing);
   }
 
   /**
-    * Access the scenarios module
-    * @param {Object} home
-    * @return {Scenarios}
-    */
+   * Access the scenarios module
+   * @param {Object} home
+   * @return {Scenarios}
+   */
   scenarios(home) {
     return new Scenarios(this.axios, home);
   }
 
   /**
-    * Access the scenario things module
-    * @param {Object} scenario
-    * @return {ScenarioThings}
-    */
+   * Access the scenario things module
+   * @param {Object} scenario
+   * @return {ScenarioThings}
+   */
   scenarioThings(scenario) {
     return new ScenarioThings(this.axios, scenario);
+  }
+
+  /**
+   * Access the hub module
+   * @return {Hub}
+   */
+  hub() {
+    let axiosInstance = axios.create({
+      baseURL: "http://homewatch-hub.local:4567/",
+      timeout: 1000,
+    });
+    return new Hub(axiosInstance);
   }
 }
 
