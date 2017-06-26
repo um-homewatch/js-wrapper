@@ -6,6 +6,7 @@ const ThingStatus = require("./thing_status");
 const Scenarios = require("./scenarios");
 const ScenarioThings = require("./scenario_things");
 const Hub = require("./hub");
+const TimedTasks = require("./timed_tasks");
 const cache = require("memory-cache");
 
 class Homewatch {
@@ -73,10 +74,19 @@ class Homewatch {
   }
 
   /**
+   * Access the timed tasks module
+   * @param {Object} home
+   * @return {ScenarioThings}
+   */
+  timedTasks(home) {
+    return new TimedTasks(this.axios, home);
+  }
+
+  /**
    * Access the hub module
    * @return {Hub}
    */
-  hub() {
+  get hub() {
     let axiosInstance = axios.create({
       baseURL: "http://homewatch-hub.local:4567/",
       timeout: 1000,

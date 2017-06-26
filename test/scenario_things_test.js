@@ -60,7 +60,7 @@ describe("scenario things endpoint", () => {
   });
 
 
-  it("should delete a scenario thing", async () => {
+  it("should apply a scenario thing", async () => {
     homewatch.auth = "token";
     nock("http://localhost:3000", { reqheaders: { "authorization": "Bearer token" } })
       .delete("/scenarios/1/things/2")

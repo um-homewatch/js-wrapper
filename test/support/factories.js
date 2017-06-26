@@ -26,4 +26,12 @@ Factory.define("scenario_thing")
   .attr("thing_id", faker.random.number())
   .attr("status", { on: faker.random.boolean() });
 
+Factory.define("timed_task")
+  .attr("thing_id", faker.random.number())
+  .attr("status", { on: faker.random.boolean() })
+  .attr("cron", faker.lorem.word());
+
+Factory.define("tunnel")
+  .attr("tunnel", faker.internet.url());
+
 module.exports = Factory;
