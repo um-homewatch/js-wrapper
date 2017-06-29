@@ -5,6 +5,7 @@ const Things = require("./things");
 const ThingStatus = require("./thing_status");
 const Scenarios = require("./scenarios");
 const ScenarioThings = require("./scenario_things");
+const ScenarioApplier = require("./scenario_applier");
 const Hub = require("./hub");
 const TimedTasks = require("./timed_tasks");
 const cache = require("memory-cache");
@@ -71,6 +72,15 @@ class Homewatch {
    */
   scenarioThings(scenario) {
     return new ScenarioThings(this.axios, scenario);
+  }
+
+  /**
+    * Access the scenario things module
+    * @param {Object} scenario
+    * @return {ScenarioThings}
+    */
+  scenarioApplier(scenario) {
+    return new ScenarioApplier(this.axios, scenario);
   }
 
   /**
