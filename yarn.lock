@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@types/node@^8.0.10":
+  version "8.0.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.10.tgz#12efec9183b072d5f951cf86395a4c780f868a17"
+
 abbrev@1, abbrev@1.0.x:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.0.9.tgz#91b4792588a7738c25f35dd6f63752a2f8776135"
@@ -576,7 +580,6 @@ homewatch-js@zeesousa/homewatch-js:
   resolved "https://codeload.github.com/zeesousa/homewatch-js/tar.gz/23be5aa2c05eb20bdc92414cb5dfc87cc43dc7d0"
   dependencies:
     axios "^0.16.1"
-    homewatch-js zeesousa/homewatch-js
 
 ignore@^3.2.0:
   version "3.3.3"

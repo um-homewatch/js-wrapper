@@ -1,6 +1,6 @@
 // this script represents a full integration with a philips hue type bulb, and interacts with it
 
-const Homewatch = require("../src/api");
+const Homewatch = require("../src/api").HomewatchApi;
 const homewatch = new Homewatch("http://localhost:3000");
 const jose = {
   name: "jose",

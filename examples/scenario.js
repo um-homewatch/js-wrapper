@@ -1,6 +1,6 @@
 // creating a scenario
 
-const Homewatch = require("../src/api");
+const Homewatch = require("../src/api").HomewatchApi;
 const homewatch = new Homewatch("http://localhost:3000");
 const jose = {
   name: "jose",

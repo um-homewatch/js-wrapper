@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "src/api.js",
   "license": "MIT",
+  "typings": "./index.d.ts",
   "engines": {
     "node": ">=7.0.0"
   },
@@ -12,6 +13,7 @@
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha"
   },
   "dependencies": {
+    "@types/node": "^8.0.10",
     "axios": "^0.16.1",
     "homewatch-js": "zeesousa/homewatch-js",
     "memory-cache": "^0.1.6"

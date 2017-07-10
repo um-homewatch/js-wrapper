@@ -10,7 +10,7 @@ const Hub = require("./hub");
 const TimedTasks = require("./timed_tasks");
 const cache = require("memory-cache");
 
-class Homewatch {
+class HomewatchApi {
   constructor(url, cache) {
     axios.defaults.baseURL = url;
     this.axios = axios.default;
@@ -124,4 +124,4 @@ function cacheClear(response) {
   return response;
 }
 
-module.exports = Homewatch;
+module.exports.HomewatchApi = HomewatchApi;

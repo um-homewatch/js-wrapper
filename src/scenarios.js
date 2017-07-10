@@ -54,15 +54,6 @@ class Scenarios {
   deleteScenario(id) {
     return this.axios.delete(`/scenarios/${id}`);
   }
-
-  /**
-   * Applies a scenario
-   * @param {number} id
-   * @return {Promise}
-   */
-  applyScenario(id) {
-    return this.axios.delete(`/scenarios/${id}/apply`);
-  }
 }
 
 module.exports = Scenarios;
