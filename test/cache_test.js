@@ -5,7 +5,7 @@ const Homewatch = require("../src/api").HomewatchApi;
 const homewatch = new Homewatch("http://localhost:3000", true);
 const cache = require("memory-cache");
 
-describe("caching", function () {
+describe("caching", function() {
   it("should cache get requests", async () => {
     homewatch.auth = "token";
     let user = factories.build("user");
