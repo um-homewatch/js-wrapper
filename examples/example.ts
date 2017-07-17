@@ -14,9 +14,15 @@ async function main() {
 
     response = await homewatch.homes.listHomes();
 
+    let home = { id: response.data[0].id }
+
     console.log(response.data[0]);
 
-    response = await homewatch.timedTasks({ id: response.data[0].id }).listTimedTasks();
+    response = await homewatch.timedTasks(home).listTimedTasks();
+
+    console.log(response.data);
+
+    response = await homewatch.triggeredTasks(home).listTriggeredTasks();
 
     console.log(response.data);
   }

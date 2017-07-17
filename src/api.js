@@ -8,6 +8,7 @@ const ScenarioThings = require("./scenario_things");
 const ScenarioApplier = require("./scenario_applier");
 const Hub = require("./hub");
 const TimedTasks = require("./timed_tasks");
+const TriggeredTasks = require("./triggered_tasks");
 const cache = require("memory-cache");
 
 class HomewatchApi {
@@ -90,6 +91,15 @@ class HomewatchApi {
    */
   timedTasks(home) {
     return new TimedTasks(this.axios, home);
+  }
+
+  /**
+   * Access the timed tasks module
+   * @param {Object} home
+   * @return {ScenarioThings}
+   */
+  triggeredTasks(home) {
+    return new TriggeredTasks(this.axios, home);
   }
 
   /**

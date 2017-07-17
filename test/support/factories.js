@@ -31,6 +31,13 @@ Factory.define("timed_task")
   .attr("status", { on: faker.random.boolean() })
   .attr("cron", faker.lorem.word());
 
+Factory.define("triggered_task")
+  .attr("thing_id", faker.random.number())
+  .attr("thing_to_compare_id", faker.random.number())
+  .attr("comparator", "==")
+  .attr("status_to_compare", { movement: faker.random.boolean() })
+  .attr("status_to_apply", { locked: faker.random.boolean() });
+
 Factory.define("tunnel")
   .attr("tunnel", faker.internet.url());
 

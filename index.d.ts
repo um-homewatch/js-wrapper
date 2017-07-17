@@ -11,6 +11,7 @@ export declare class HomewatchApi {
   status(thing: { id: number }): Homewatch.ThingStatus;
   things(home: { id: number }): Homewatch.Things;
   timedTasks(home: { id: number }): Homewatch.TimedTasks;
+  triggeredTasks(home: { id: number }): Homewatch.TriggeredTasks;
 }
 
 declare namespace Homewatch {
@@ -64,6 +65,11 @@ declare namespace Homewatch {
     private constructor();
   }
 
+  class ScenarioApplier {
+    applyScenario(): Promise<any>;
+    private constructor();
+  }
+
   class TimedTasks {
     createTimedTask(timedTask: { thing_id?: number, scenario_id?: number, status: any, cron: string }): Promise<any>;
     deleteTimedTask(id: number): Promise<any>;
@@ -73,8 +79,12 @@ declare namespace Homewatch {
     private constructor();
   }
 
-  class ScenarioApplier {
-    applyScenario(): Promise<any>;
+  class TriggeredTasks {
+    createTriggeredTask(triggeredTask: { thing_id?: number, scenario_id?: number, thing_to_compare_id: number, comparator: string, status_to_compare: any, status_to_apply: any }): Promise<any>;
+    deleteTriggeredTask(id: number): Promise<any>;
+    getTriggeredTask(id: number): Promise<any>;
+    listTriggeredTasks(): Promise<any>;
+    updateTriggeredTask(id: number, triggeredTask: { thing_id?: number, scenario_id?: number, thing_to_compare_id: number, comparator: string, status_to_compare: any, status_to_apply: any }): Promise<any>;
     private constructor();
   }
 
