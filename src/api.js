@@ -13,8 +13,10 @@ const cache = require("memory-cache");
 
 class HomewatchApi {
   constructor(url, cache) {
-    axios.defaults.baseURL = url;
-    this.axios = axios.default;
+    this.axios = axios.create({
+      baseURL: url,
+    });
+
     if (cache === true) {
       this.axios.get = getFromCache(this.axios.get);
       this.axios.interceptors.response.use(cacheClear);
@@ -22,7 +24,7 @@ class HomewatchApi {
   }
 
   set auth(auth) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${auth}`;
+    Object.assign(this.axios.defaults, { headers: { authorization: `Bearer ${auth}` } });
   }
 
   /**
