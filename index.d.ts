@@ -38,6 +38,7 @@ declare namespace Homewatch {
     updateThing(id: number, home: any): Promise<any>;
     deleteThing(id: number): Promise<any>;
     getThing(id: number): Promise<any>;
+    discoverThings(discoveryParams: {type: string, subtype: string, port: number}): Promise<any>;
     private constructor();
   }
 
