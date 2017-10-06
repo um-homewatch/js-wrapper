@@ -72,11 +72,11 @@ declare namespace Homewatch {
   }
 
   class TimedTasks {
-    createTimedTask(timedTask: { thing_id?: number, scenario_id?: number, status: any, cron: string }): Promise<any>;
+    createTimedTask(timedTask: { thing_id?: number, scenario_id?: number, status_to_apply: any, cron: string }): Promise<any>;
     deleteTimedTask(id: number): Promise<any>;
     getTimedTask(id: number): Promise<any>;
     listTimedTasks(): Promise<any>;
-    updateTimedTask(id: number, timedTask: { thing_id?: number, scenario_id?: number, status: any, cron: string }): Promise<any>;
+    updateTimedTask(id: number, timedTask: { thing_id?: number, scenario_id?: number, status_to_apply: any, cron: string }): Promise<any>;
     private constructor();
   }
 

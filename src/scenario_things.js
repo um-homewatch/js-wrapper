@@ -37,7 +37,7 @@ class ScenarioThings {
     * @param {number} id
     * @param {Object} thing
     * @param {string} thing.thing_id
-    * @param {Object} thing.statusfo
+    * @param {Object} thing.status
     * @return {Promise}
     */
   updateScenarioThing(id, thing) {
